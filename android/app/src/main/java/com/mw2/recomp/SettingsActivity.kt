@@ -89,7 +89,18 @@ class SettingsActivity : AppCompatActivity() {
         })
 
         switch(R.id.msaa, prefs.multisampling) { prefs.multisampling = it }
-        switch(R.id.prefer60, prefs.prefer60Hz) { prefs.prefer60Hz = it }
+        val fpsLabel: TextView = findViewById(R.id.fps_limit_label)
+val fpsSlider: SeekBar = findViewById(R.id.fps_limit)
+fpsSlider.max = Prefs.FPS_LIMITS.size - 1
+fpsSlider.progress = Prefs.FPS_LIMITS.indexOf(prefs.fpsLimit).coerceAtLeast(0)
+fpsLabel.text = getString(R.string.fps_limit, Prefs.FPS_LIMITS[fpsSlider.progress])
+fpsSlider.setOnSeekBarChangeListener(object : Simple() {
+    override fun onProgressChanged(bar: SeekBar, value: Int, fromUser: Boolean) {
+        val fps = Prefs.FPS_LIMITS[value]
+        fpsLabel.text = getString(R.string.fps_limit, fps)
+        if (fromUser) prefs.fpsLimit = fps
+    }
+})
         switch(R.id.prewarm_all, prefs.prewarmAllShaders) { prefs.prewarmAllShaders = it }
 
         val fovLabel: TextView = findViewById(R.id.fov_label)
