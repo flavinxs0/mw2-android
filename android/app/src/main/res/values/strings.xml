@@ -112,6 +112,7 @@
     <string name="prefer_60">Lock display to 60 FPS (Hardware Lock)</string>
     <string name="fov">Field of View (FOV): %1$d°</string>
     <string name="fov_hint">85° is recommended for ultrawide 20:9 mobile displays. (65° was original 16:9 console FOV).</string>
+    <string name="fps_limit">FPS limit: %1$d</string>
     <string name="show_stats">Show frames per second</string>
     <string name="hide_stats">Hide frames per second</string>
     <string name="texture_budget_auto">Texture memory: chosen for this phone</string>
