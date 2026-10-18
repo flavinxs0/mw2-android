@@ -1,7 +1,7 @@
 # Modern Warfare 2 — Android & PC Port
 
 [![Build Android APK](https://github.com/OpenPort-Labs/mw2-android/actions/workflows/build-apk.yml/badge.svg)](https://github.com/OpenPort-Labs/mw2-android/actions/workflows/build-apk.yml)
-[![Release](https://github.com/flavinxs0/mw2-android/releases/tag/V1.0)
+[![Release](https://img.shields.io/github/v/release/OpenPort-Labs/mw2-android?color=blue)](https://github.com/flavinxs0/mw2-android/releases/tag/V1.0)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 *Call of Duty: Modern Warfare 2 (2009)* for the Xbox 360, recompiled ahead-of-time into native machine code for **Android (ARM64)**, **Linux**, and **Windows (x86-64)**.
