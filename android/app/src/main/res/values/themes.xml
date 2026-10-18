@@ -51,15 +51,4 @@
         <item name="android:letterSpacing">0.12</item>
         <item name="android:stateListAnimator">@null</item>
     </style>
-    <style name="MenuEntry">
-        <item name="android:minHeight">0dp</item>
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:gravity">start|center_vertical</item>
-        <item name="android:paddingStart">12dp</item>
-        <item name="android:textColor">#E8EAED</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:letterSpacing">0.12</item>
-        <item name="android:stateListAnimator">@null</item>
-    </style>
 </resources>
