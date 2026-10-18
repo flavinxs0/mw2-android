@@ -365,7 +365,12 @@ class GameActivity : AppCompatActivity(), NativeListener {
                     windowManager.defaultDisplay
                 }
                 if (displayObj != null) {
-                    val mode60 = displayObj.supportedModes.firstOrNull { kotlin.math.abs(it.refreshRate - 60f) < 1f }
+                    val target = prefs.fpsLimit.toFloat()
+val modes = displayObj.supportedModes.filter { it.refreshRate + 1f >= target }
+val mode60 = modes
+    .filter { kotlin.math.abs(it.refreshRate / target - Math.round(it.refreshRate / target)) < 0.03f }
+    .minByOrNull { it.refreshRate }
+    ?: modes.minByOrNull { it.refreshRate }
                     if (mode60 != null) {
                         attributes.preferredDisplayModeId = mode60.modeId
                     }
