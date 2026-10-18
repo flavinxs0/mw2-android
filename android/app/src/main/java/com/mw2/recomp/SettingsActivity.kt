@@ -102,6 +102,7 @@ fpsSlider.setOnSeekBarChangeListener(object : Simple() {
     }
 })
         switch(R.id.prewarm_all, prefs.prewarmAllShaders) { prefs.prewarmAllShaders = it }
+        switch(R.id.persist_pipeline, prefs.persistPipelineCache) { prefs.persistPipelineCache = it }
 
         val fovLabel: TextView = findViewById(R.id.fov_label)
         val fovSlider: SeekBar = findViewById(R.id.fov_slider)

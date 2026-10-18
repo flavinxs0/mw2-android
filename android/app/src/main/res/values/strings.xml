@@ -220,4 +220,5 @@
     <string name="reset_one">Reset this</string>
     <string name="reset_all">Reset all</string>
     <string name="reset_all_explained">Every control goes back where it started, at its original size.</string>
+    <string name="persist_pipeline">Keep pipeline cache between runs (experimental)</string>
 </resources>

@@ -213,6 +213,13 @@
                     android:text="@string/texture_hint" />
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/persist_pipeline"
+                    style="@style/SettingSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/persist_pipeline" />
+
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/prewarm_all"
                     style="@style/SettingSwitch"
                     android:layout_width="match_parent"
