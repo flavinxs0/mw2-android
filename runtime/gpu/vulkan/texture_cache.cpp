@@ -1021,7 +1021,7 @@ bool vk::textures::Initialise()
     if (!g.budget)
     {
 #if defined(MW2_ANDROID) || defined(__ANDROID__)
-        g.budget = 128ull << 20;
+        g.budget = 192ull << 20;
 #else
         g.budget = std::clamp<uint64_t>(deviceLocal / 2, 256ull << 20, 2048ull << 20);
 #endif
