@@ -52,6 +52,80 @@ namespace
         return uint64_t(value);
     }
 
+    // The cores that do the heavy work. cpu_capacity is the kernel's own
+    // measure of how strong a core is (0..1024) and tells big from little
+    // cores even when their clocks are close: a 2.0 GHz Cortex-A55 and a
+    // 2.2 GHz Cortex-A76 differ by 9% in clock but by 2.7x in capacity. The
+    // big group is everything above the largest drop in capacity, which keeps
+    // prime and performance cores of 2+2+4 and 1+3+4 clusters together.
+    // Without cpu_capacity, fall back to the clock speed.
+    void FindCores()
+    {
+        CPU_ZERO(&g_bigCores);
+        CPU_ZERO(&g_allCores);
+        g_bigCoreCount = 0;
+        const long configured = sysconf(_SC_NPROCESSORS_CONF);
+        g_coreCount = uint32_t(std::clamp<long>(configured, 1, CPU_SETSIZE));
+
+        std::vector<uint64_t> maximum(g_coreCount, 0);
+        std::vector<uint64_t> capacity(g_coreCount, 0);
+        uint64_t fastest = 0;
+        bool haveCapacity = true;
+        for (uint32_t cpu = 0; cpu < g_coreCount; cpu++)
+        {
+            CPU_SET(int(cpu), &g_allCores);
+            char path[128];
+            std::snprintf(path, sizeof path,
+                          "/sys/devices/system/cpu/cpu%u/cpufreq/cpuinfo_max_freq", cpu);
+            maximum[cpu] = ReadNumber(path);
+            fastest = std::max(fastest, maximum[cpu]);
+            std::snprintf(path, sizeof path,
+                          "/sys/devices/system/cpu/cpu%u/cpu_capacity", cpu);
+            capacity[cpu] = ReadNumber(path);
+            if (!capacity[cpu]) haveCapacity = false;
+        }
+        if (!fastest && !haveCapacity)
+        {
+            // Nothing to read (an emulator, a locked-down kernel): every
+            // core is as good as the next.
+            g_bigCores = g_allCores;
+            g_bigCoreCount = g_coreCount;
+            return;
+        }
+
+        uint64_t threshold = 0;
+        if (haveCapacity)
+        {
+            std::vector<uint64_t> levels(capacity);
+            std::sort(levels.begin(), levels.end(),
+                      [](uint64_t a, uint64_t b) { return a > b; });
+            levels.erase(std::unique(levels.begin(), levels.end()), levels.end());
+            threshold = levels.back(); // no gap found: every core counts as big
+            double worst = 0.75;       // only a drop below this counts as a gap
+            for (size_t i = 0; i + 1 < levels.size(); i++)
+            {
+                const double ratio = double(levels[i + 1]) / double(levels[i]);
+                if (ratio < worst) { worst = ratio; threshold = levels[i]; }
+            }
+        }
+        else
+        {
+            threshold = fastest - fastest / 3;
+        }
+
+        const std::vector<uint64_t>& score = haveCapacity ? capacity : maximum;
+        for (uint32_t cpu = 0; cpu < g_coreCount; cpu++)
+            if (score[cpu] >= threshold) { CPU_SET(int(cpu), &g_bigCores); g_bigCoreCount++; }
+
+        // At least 2 fast cores, otherwise use them all.
+        if (g_bigCoreCount < 2)
+        {
+            g_bigCores = g_allCores;
+            g_bigCoreCount = g_coreCount;
+        }
+        LOGI("perf: %u cores, %u of them fast (%llu kHz, picked by %s)", g_coreCount,
+             g_bigCoreCount, (unsigned long long)fastest, haveCapacity ? "capacity" : "clock");
+    }
 
     uint64_t MemInfoKB(const char* key)
     {
