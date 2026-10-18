@@ -190,6 +190,14 @@ class Prefs(context: Context) {
         set(value) = store.edit().putBoolean(KEY_PREWARM_ALL, value).apply()
 
     /**
+     * Keep the driver's pipeline blob on disk between runs on Mali
+     * (MW2_PERSIST_PIPELINE_CACHE). Off by default: it may be unstable.
+     */
+    var persistPipelineCache: Boolean
+        get() = store.getBoolean(KEY_PERSIST_PIPELINE, true)
+        set(value) = store.edit().putBoolean(KEY_PERSIST_PIPELINE, value).apply()
+
+    /**
      * The name other network players see (MW2_NAME). Empty means the
      * profile's name, which on a fresh phone is "Player 1".
      */
@@ -238,6 +246,7 @@ class Prefs(context: Context) {
         private const val KEY_UPDATE_TAG = "seenUpdateTag"
         private const val KEY_PAD_WARNING = "seenPadWarning"
         private const val KEY_PREWARM_ALL = "prewarmAllShaders"
+        private const val KEY_PERSIST_PIPELINE = "persistPipelineCache"
         private const val KEY_PLAYER_NAME = "playerName"
         private const val KEY_LAN_ACCEPT = "lanAccept"
         private const val KEY_LAN_IFACE = "lanIface"

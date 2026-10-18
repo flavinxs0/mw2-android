@@ -52,52 +52,6 @@ namespace
         return uint64_t(value);
     }
 
-    // The cores that clock highest. Within 15% of the fastest counts as big,
-    // which puts a 2+2+4 cluster's prime and performance cores together and
-    // leaves the little ones out.
-    void FindCores()
-    {
-        CPU_ZERO(&g_bigCores);
-        CPU_ZERO(&g_allCores);
-        const long configured = sysconf(_SC_NPROCESSORS_CONF);
-        g_coreCount = uint32_t(std::clamp<long>(configured, 1, CPU_SETSIZE));
-
-        std::vector<uint64_t> maximum(g_coreCount, 0);
-        uint64_t fastest = 0;
-        for (uint32_t cpu = 0; cpu < g_coreCount; cpu++)
-        {
-            CPU_SET(int(cpu), &g_allCores);
-            char path[128];
-            std::snprintf(path, sizeof path,
-                          "/sys/devices/system/cpu/cpu%u/cpufreq/cpuinfo_max_freq", cpu);
-            maximum[cpu] = ReadNumber(path);
-            fastest = std::max(fastest, maximum[cpu]);
-        }
-        if (!fastest)
-        {
-            // No cpufreq to read (an emulator, a locked-down kernel): every
-            // core is as good as the next.
-            g_bigCores = g_allCores;
-            g_bigCoreCount = g_coreCount;
-            return;
-        }
-        // Within ~30% captures both prime and performance/mid cores on tri-cluster
-        // SoCs (such as Google Tensor 2+2+4 or Snapdragon 1+3+4), while excluding
-        // low-frequency efficiency cores (Cortex-A55/A510).
-        const uint64_t threshold = fastest - fastest / 3;
-        for (uint32_t cpu = 0; cpu < g_coreCount; cpu++)
-            if (maximum[cpu] >= threshold) { CPU_SET(int(cpu), &g_bigCores); g_bigCoreCount++; }
-
-        // If we found at least 2 fast cores, keep them; otherwise (e.g. single-core
-        // or uniform cluster) use all cores.
-        if (g_bigCoreCount < 2)
-        {
-            g_bigCores = g_allCores;
-            g_bigCoreCount = g_coreCount;
-        }
-        LOGI("perf: %u cores, %u of them fast (%llu kHz)", g_coreCount, g_bigCoreCount,
-             (unsigned long long)fastest);
-    }
 
     uint64_t MemInfoKB(const char* key)
     {
