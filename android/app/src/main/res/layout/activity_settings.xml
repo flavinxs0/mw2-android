@@ -160,13 +160,16 @@
                     android:layout_height="wrap_content"
                     android:text="@string/msaa" />
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/prefer60"
-                    style="@style/SettingSwitch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/prefer_60" />
+                    <TextView
+        android:id="@+id/fps_limit_label"
+        style="@style/SettingLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
+    <SeekBar
+        android:id="@+id/fps_limit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/fov_label"
                     style="@style/SettingLabel"
