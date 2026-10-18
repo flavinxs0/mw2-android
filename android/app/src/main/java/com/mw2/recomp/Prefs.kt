@@ -197,6 +197,8 @@ class Prefs(context: Context) {
         set(value) = store.edit().putString(KEY_LAN_IFACE, value).apply()
 
     companion object {
+        private const val KEY_FPS_LIMIT = "fpsLimit"
+        val FPS_LIMITS = listOf(30, 45, 60, 120)
         private const val KEY_RESOLUTION = "resolutionScale"
         private const val KEY_RENDER_SCALE = "renderScale"
         private const val KEY_MSAA = "multisampling"
