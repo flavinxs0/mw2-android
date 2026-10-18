@@ -93,7 +93,7 @@
         android:layout_height="2dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:background="#C9A227" />
+        android:visibility="gone" />
 
     <ScrollView
         android:layout_width="match_parent"

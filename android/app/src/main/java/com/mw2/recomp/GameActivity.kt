@@ -487,14 +487,14 @@ val mode60 = modes
         hudContainer.visibility = if (prefs.showStats) View.VISIBLE else View.GONE
 
         statsText = TextView(this)
-        statsText.setTextColor(Color.argb(245, 224, 242, 254))
+        statsText.setTextColor(Color.argb(245, 255, 236, 214))
         statsText.textSize = 10f
         statsText.typeface = Typeface.MONOSPACE
         statsText.setPadding(pad(10), pad(4), pad(10), pad(4))
         val pillBg = GradientDrawable().apply {
-            setColor(Color.argb(215, 15, 23, 42))
+            setColor(Color.argb(215, 20, 20, 23))
             cornerRadius = pad(10).toFloat()
-            setStroke(pad(1), Color.argb(80, 56, 189, 248))
+            setStroke(pad(1), Color.argb(170, 255, 122, 26))
         }
         statsText.background = pillBg
         statsText.setOnClickListener {
@@ -513,9 +513,9 @@ val mode60 = modes
         hudExpandedCard = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             val cardBg = GradientDrawable().apply {
-                setColor(Color.argb(235, 15, 23, 42))
+                setColor(Color.argb(235, 20, 20, 23))
                 cornerRadius = pad(12).toFloat()
-                setStroke(pad(1), Color.argb(120, 56, 189, 248))
+                setStroke(pad(1), Color.argb(200, 255, 122, 26))
             }
             background = cardBg
             setPadding(pad(14), pad(10), pad(14), pad(10))
@@ -533,7 +533,7 @@ val mode60 = modes
         }
         val hudTitle = TextView(this).apply {
             text = "MW2 ANDROID · PERFORMANCE"
-            setTextColor(Color.argb(255, 56, 189, 248))
+            setTextColor(Color.argb(255, 255, 122, 26))
             textSize = 11f
             typeface = Typeface.DEFAULT_BOLD
         }

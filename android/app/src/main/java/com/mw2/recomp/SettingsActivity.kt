@@ -227,7 +227,7 @@ fpsSlider.setOnSeekBarChangeListener(object : Simple() {
         tabButtons.forEachIndexed { i, button ->
             if (i == index) {
                 button.setBackgroundResource(R.drawable.bg_entry_selected)
-                button.setTextColor(0xFFE8B234.toInt())
+                button.setTextColor(0xFF141417.toInt())
             } else {
                 button.setBackgroundColor(android.graphics.Color.TRANSPARENT)
                 button.setTextColor(0xFFE8EAED.toInt())

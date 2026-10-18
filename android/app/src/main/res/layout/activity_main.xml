@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- PC-launcher mirror, compact single screen (landscape, no scrolling):
-     right-aligned condensed entries with dividers left, detail pane with
-     gold rule right, version tag top-right, glowing wordmark bottom-right,
-     smoky BackdropView behind. Every entry keeps its action. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -30,8 +26,7 @@
             android:gravity="end"
             android:textColor="#8B949E"
             android:textSize="9sp"
-            android:fontFamily="sans-serif"
-            tools:text="v0.1.0-alpha · TU0 · DISC VERSION 1.0.557" />
+            tools:text="v0.1.0-alpha" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,173 +46,70 @@
                     android:id="@+id/play"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.6"
+                    android:layout_marginBottom="4dp"
                     android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
+                    android:background="@drawable/bg_play_orange"
+                    android:gravity="center"
                     android:text="@string/play"
                     android:textColor="#FFFFFF"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
+                    android:letterSpacing="0.14"
                     android:stateListAnimator="@null" />
 
-                <Button
-                    android:id="@+id/other_app"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
-                    android:textColor="#E8EAED"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:id="@+id/install"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
-                    android:text="@string/install_game"
-                    android:textColor="#E8EAED"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:id="@+id/entry_mods"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
-                    android:text="@string/entry_mods"
-                    android:textColor="#E8EAED"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:id="@+id/entry_tu6"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
-                    android:text="@string/entry_tu6"
-                    android:textColor="#E8EAED"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
-                    android:stateListAnimator="@null" />
+                <Button android:id="@+id/other_app" style="@style/MenuEntry"
+                    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+                <Button android:id="@+id/install" style="@style/MenuEntry"
+                    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+                    android:text="@string/install_game" />
+                <Button android:id="@+id/entry_mods" style="@style/MenuEntry"
+                    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+                    android:text="@string/entry_mods" />
+                <Button android:id="@+id/entry_tu6" style="@style/MenuEntry"
+                    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+                    android:text="@string/entry_tu6" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_marginStart="32dp"
                     android:background="#3A3A3E" />
 
-                <Button
-                    android:id="@+id/driver"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
-                    android:text="@string/graphics_driver"
-                    android:textColor="#E8EAED"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:id="@+id/settings"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
-                    android:text="@string/entry_settings"
-                    android:textColor="#E8EAED"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:id="@+id/log"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
-                    android:text="@string/view_log"
-                    android:textColor="#E8EAED"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
-                    android:stateListAnimator="@null" />
+                <Button android:id="@+id/driver" style="@style/MenuEntry"
+                    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+                    android:text="@string/graphics_driver" />
+                <Button android:id="@+id/settings" style="@style/MenuEntry"
+                    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+                    android:text="@string/entry_settings" />
+                <Button android:id="@+id/log" style="@style/MenuEntry"
+                    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+                    android:text="@string/view_log" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_marginStart="32dp"
                     android:background="#3A3A3E" />
 
-                <Button
-                    android:id="@+id/entry_updates"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
-                    android:text="@string/check_updates"
-                    android:textColor="#E8EAED"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:id="@+id/entry_quit"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="end|center_vertical"
-                    android:text="@string/quit_launcher"
-                    android:textColor="#E8EAED"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.12"
-                    android:stateListAnimator="@null" />
+                <Button android:id="@+id/entry_updates" style="@style/MenuEntry"
+                    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+                    android:text="@string/check_updates" />
+                <Button android:id="@+id/entry_quit" style="@style/MenuEntry"
+                    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+                    android:text="@string/quit_launcher" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/direct_launch_switch"
+                    style="@style/SettingSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:gravity="end"
+                    android:paddingTop="2dp"
+                    android:paddingStart="12dp"
                     android:text="Direct launch on app start"
                     android:textColor="#8B949E"
                     android:textSize="10sp"
@@ -229,49 +121,76 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.15"
                 android:layout_marginStart="8dp"
-                android:orientation="vertical"
-                android:paddingTop="2dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/detail_title"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_default_title"
-                    android:textColor="#F0F6FC"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:letterSpacing="0.1" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1.4"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
-                <View
-                    android:layout_width="48dp"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="4dp"
-                    android:background="#C9A227" />
+                    <TextView
+                        android:id="@+id/detail_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_default_title"
+                        android:textColor="#F0F6FC"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:letterSpacing="0.1" />
 
-                <TextView
-                    android:id="@+id/detail_text"
+                    <View
+                        android:layout_width="48dp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="4dp"
+                        android:background="#FF7A1A" />
+
+                    <TextView
+                        android:id="@+id/detail_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:maxLines="6"
+                        android:ellipsize="end"
+                        android:text="@string/detail_default_text"
+                        android:textColor="#B9BDC4"
+                        android:textSize="11sp"
+                        android:lineSpacingExtra="2dp"
+                        android:fontFamily="sans-serif" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:maxLines="6"
-                    android:ellipsize="end"
-                    android:text="@string/detail_default_text"
-                    android:textColor="#B9BDC4"
-                    android:textSize="11sp"
-                    android:lineSpacingExtra="2dp"
-                    android:fontFamily="sans-serif" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:maxLines="4"
-                    android:ellipsize="end"
-                    android:textColor="#C9D1D9"
-                    android:textSize="11sp"
-                    android:lineSpacingExtra="2dp"
-                    android:fontFamily="sans-serif" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STATUS"
+                        android:textColor="#FF7A1A"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.15" />
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:maxLines="4"
+                        android:ellipsize="end"
+                        android:textColor="#C9D1D9"
+                        android:textSize="11sp"
+                        android:lineSpacingExtra="2dp"
+                        android:fontFamily="sans-serif" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -304,12 +223,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/wordmark_recompiled"
-                    android:textColor="#8CE99A"
+                    android:textColor="#FF7A1A"
                     android:textSize="16sp"
                     android:fontFamily="sans-serif-black"
                     android:letterSpacing="0.14"
-                    android:shadowColor="#2E7D32"
+                    android:shadowColor="#FF7A1A"
                     android:shadowRadius="10"
+                    android:shadowDx="0"
+                    android:shadowDy="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="By: flavinxs0"
+                    android:textColor="#FF7A1A"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:letterSpacing="0.2"
+                    android:shadowColor="#FF7A1A"
+                    android:shadowRadius="6"
                     android:shadowDx="0"
                     android:shadowDy="0" />
 
