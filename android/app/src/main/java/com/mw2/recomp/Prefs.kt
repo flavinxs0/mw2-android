@@ -61,7 +61,21 @@ class Prefs(context: Context) {
     var prefer60Hz: Boolean
         get() = store.getBoolean(KEY_60HZ, true)
         set(value) = store.edit().putBoolean(KEY_60HZ, value).apply()
-
+      
+    /**
+     * Frame-rate cap, one of FPS_LIMITS (MW2_FPS_LIMIT). Replaces the old
+     * 60 FPS lock: a phone that had the lock on starts at 60, off at 120.
+     */
+    var fpsLimit: Int
+        get() {
+            val saved = store.getInt(KEY_FPS_LIMIT, 0)
+            return if (saved in FPS_LIMITS) saved else if (prefer60Hz) 60 else 120
+        }
+        set(value) {
+            val v = if (value in FPS_LIMITS) value else 60
+            store.edit().putInt(KEY_FPS_LIMIT, v).putBoolean(KEY_60HZ, v <= 60).apply()
+        }
+  
     /**
      * Field of View (cg_fov). Modern phones are 20:9 ultrawide,
      * so 85 FOV gives a natural, wide cinematic view without gun distortion,
