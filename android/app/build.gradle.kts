@@ -128,14 +128,14 @@ android {
             dimension = "title"
             applicationIdSuffix = ".sp"
             versionNameSuffix = "-campaign"
-            resValue("string", "app_name", "MW2 Campaign")
+            resValue("string", "app_name", "CoD: Modern Warfare 2")
             externalNativeBuild { cmake { arguments += listOf("-DMW2_TITLE=sp", "-DMW2_ONLINE=none") } }
         }
         create("multiplayer") {
             dimension = "title"
             applicationIdSuffix = ".mp"
             versionNameSuffix = "-multiplayer"
-            resValue("string", "app_name", "MW2 Multiplayer")
+            resValue("string", "app_name", "CoD: MW2 Multiplayer")
             // LAN backend: plain UDP system-link between phones/PCs. Steam
             // makes no sense on Android (no Steam client), and "none" would
             // leave MP with system-link on one device only.
