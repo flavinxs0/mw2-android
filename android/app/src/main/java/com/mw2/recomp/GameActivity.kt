@@ -723,6 +723,7 @@ val mode60 = modes
             NativeBridge.nativeSetOption("MW2_SCALE", prefs.renderScale.toString())
         }
         NativeBridge.nativeSetOption("MW2_FPS_LIMIT", prefs.fpsLimit.toString())
+        NativeBridge.nativeSetOption("MW2_PERSIST_PIPELINE_CACHE", "1")
         NativeBridge.nativeSetOption("MW2_STUTTERS", "1")
         // Full synchronous precompile at boot when the player asked for it in
         // Settings; otherwise the tiered instant-boot budget + background warmup.

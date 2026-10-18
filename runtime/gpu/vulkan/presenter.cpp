@@ -441,7 +441,8 @@ namespace
 
         VkSwapchainCreateInfoKHR info{ VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR };
         info.surface = g.surface;
-        info.minImageCount = std::max(caps.minImageCount, 2u);
+        info.minImageCount = std::max(caps.minImageCount, 3u);
+        if (caps.maxImageCount && info.minImageCount > caps.maxImageCount) info.minImageCount = caps.maxImageCount;
         info.imageFormat = chosen.format;
         info.imageColorSpace = chosen.colorSpace;
         info.imageExtent = g.extent;
