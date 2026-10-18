@@ -355,9 +355,9 @@ class GameActivity : AppCompatActivity(), NativeListener {
         // Sustained performance mode locks CPU/GPU governors to steady frequencies
         // to prevent erratic thermal throttling mid-gameplay.
         window.setSustainedPerformanceMode(true)
-        if (prefs.prefer60Hz) {
+        if (prefs.fpsLimit in Prefs.FPS_LIMITS) {
             val attributes = window.attributes
-            attributes.preferredRefreshRate = 60f
+            attributes.preferredRefreshRate = prefs.fpsLimit.toFloat()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val displayObj = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) display
                 else {
