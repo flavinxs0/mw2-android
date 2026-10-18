@@ -46,7 +46,7 @@ android {
     ndkVersion = setting("MW2_NDK_VERSION") ?: "28.2.13676358"
 
     defaultConfig {
-        applicationId = "com.mw2.recomp"
+        applicationId = "cod.modern.warfare2"
         // Android 8.0. AAudio, ASurfaceControl-free presenting, and the
         // Vulkan 1.1 drivers this renderer needs all predate it; below that
         // there is no device with the memory to run this anyway.
