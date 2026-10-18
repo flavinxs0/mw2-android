@@ -1,4 +1,3 @@
-
 # Modern Warfare 2 — Android & PC Port
 
 [![Build Android APK](https://github.com/OpenPort-Labs/mw2-android/actions/workflows/build-apk.yml/badge.svg)](https://github.com/OpenPort-Labs/mw2-android/actions/workflows/build-apk.yml)
