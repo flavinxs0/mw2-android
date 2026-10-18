@@ -134,6 +134,8 @@
     <string name="section_storage">Storage</string>
     <string name="storage_computing">Measuring…</string>
     <string name="saves_files">Saves</string>
+    <string name="storage_game">Game files</string>
+    <string name="storage_shaders">Shader cache</string>
     <string name="storage_line">%1$s: %2$s</string>
     <string name="clear_shaders">Clear shader cache</string>
     <string name="clear_logs">Clear logs</string>

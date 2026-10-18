@@ -208,8 +208,19 @@ fpsSlider.setOnSeekBarChangeListener(object : Simple() {
         }
     }
 
+    /** Slides the gold rule under the chosen tab. */
+    private fun moveTabRule(index: Int) {
+        val rule = findViewById<android.view.View>(R.id.tab_rule)
+        val button = tabButtons[index]
+        rule.post {
+            val target = button.left + (button.width - rule.width) / 2f
+            rule.animate().translationX(target - rule.left).setDuration(150).start()
+        }
+    }
+
     /** Custom tab bar: black-bar highlight on the chosen tab, one page shown. */
     private fun selectTab(index: Int) {
+        moveTabRule(index)
         tabPages.forEachIndexed { i, page ->
             page.visibility = if (i == index) android.view.View.VISIBLE else android.view.View.GONE
         }
@@ -313,9 +324,9 @@ fpsSlider.setOnSeekBarChangeListener(object : Simple() {
                 (gameDir?.parent ?: base.absolutePath) + "/saves",
             )
             val rows = listOf(
-                getString(R.string.install_game) to (gameDir?.let { sizeOf(it) } ?: 0L),
+                getString(R.string.storage_game) to (gameDir?.let { sizeOf(it) } ?: 0L),
                 getString(R.string.saves_files) to sizeOf(saves),
-                getString(R.string.clear_shaders) to shaderCacheFiles().sumOf {
+                getString(R.string.storage_shaders) to shaderCacheFiles().sumOf {
                     try {
                         it.length()
                     } catch (_: Throwable) {
