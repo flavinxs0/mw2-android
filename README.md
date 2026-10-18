@@ -228,7 +228,7 @@ The [.github/workflows/android.yml](https://github.com/flavinxs0/mw2-android/blo
     + Set **Render Scale** to `60% - 75%` for solid 60 FPS on mid-range devices.
     + Keep **Multisampling (MSAA)** OFF on mobile tiled GPUs.
     + Set **Texture Budget** to 256 MB or 512 MB to prevent memory pressure.
-
+    + Set the **FPS limit** to 30 or 45 on phones that run hot. 120 FPS only works on 120 Hz screens, and 45 looks smoothest on a 90 Hz screen.
 ---
 
 ## Credits & Acknowledgments
