@@ -341,6 +341,16 @@ class GameActivity : AppCompatActivity(), NativeListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (android.os.Build.VERSION.SDK_INT >= 30) {
+            try {
+                val am = getSystemService(android.app.ActivityManager::class.java)
+                val list = am.getHistoricalProcessExitReasons(packageName, 0, 5)
+                val text = list.joinToString("\n") {
+                    "${java.util.Date(it.timestamp)} reason=${it.reason} status=${it.status} rss=${it.rss}KB desc=${it.description}"
+                }
+                java.io.File(getExternalFilesDir(null), "exit_reasons.txt").writeText(text)
+            } catch (e: Exception) { }
+        }
         prefs = Prefs(this)
 
         Trail.note(this, "game: starting")
