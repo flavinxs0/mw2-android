@@ -273,7 +273,7 @@ jobs:
             "$tools/apksigner" verify --verbose "$got" || true
             exit 1
           fi
-          cp "$got" "dist/CoD-Modern-Warfare-2-RECOMP.apk"
+          cp "$got" "dist/CoD-Modern-Warfare-2-RECOMP-$tu.apk"
           (cd dist && sha256sum *.apk > SHA256SUMS.txt)
           ls -la dist
 
