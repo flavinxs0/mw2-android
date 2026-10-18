@@ -1,5 +1,6 @@
 // A draw: the render target and pass it goes into, its constants and
 // textures, the fixed-function state, and the command itself.
+#include <unordered_set>
 #include "renderer_state.h"
 #include "../../diagnostics.h"
 #include "texture_cache.h"
@@ -521,6 +522,28 @@ void vk::renderer::Draw(const gpu::RegisterFile& r, const DrawCall& call)
                       uint32_t(colourTarget->format), uint32_t(depthTarget->format),
                       key.topology, depthControl, key.blendControl,
                       key.colourMask, modeCntl, key.samples };
+        if (ShaderCachePath())
+        {
+            static std::unordered_set<uint64_t> s_seen;
+            static bool s_seeded = false;
+            auto keyOf = [](const Recorded& r) {
+                uint64_t h = 1469598103934665603ull;
+                for (uint64_t v : { uint64_t(r.vertexShader), uint64_t(r.pixelShader),
+                                    uint64_t(r.colourFormat), uint64_t(r.depthFormat),
+                                    uint64_t(r.topology), uint64_t(r.depthControl),
+                                    uint64_t(r.blendControl), uint64_t(r.colourMask),
+                                    uint64_t(r.modeCntl), uint64_t(r.samples) })
+                    h = (h ^ v) * 1099511628211ull;
+                return h;
+            };
+            if (!s_seeded) { s_seeded = true; for (const auto& r : g.recorded) s_seen.insert(keyOf(r)); }
+            if (s_seen.insert(keyOf(rec)).second)
+            {
+                g.recorded.push_back(rec);
+                static uint32_t s_sinceSave = 0;
+                if (++s_sinceSave >= 25) { s_sinceSave = 0; WriteShaderCache(); }
+            }
+        }
         EnqueuePipelineWarmup(rec, /*highPriority=*/true);
         Skip("pipeline compiling asynchronously in background");
         return;
