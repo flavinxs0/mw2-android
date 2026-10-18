@@ -717,6 +717,7 @@ class GameActivity : AppCompatActivity(), NativeListener {
         if (prefs.renderScale in 1..3) {
             NativeBridge.nativeSetOption("MW2_SCALE", prefs.renderScale.toString())
         }
+        NativeBridge.nativeSetOption("MW2_FPS_LIMIT", prefs.fpsLimit.toString())
         NativeBridge.nativeSetOption("MW2_STUTTERS", "1")
         // Full synchronous precompile at boot when the player asked for it in
         // Settings; otherwise the tiered instant-boot budget + background warmup.
