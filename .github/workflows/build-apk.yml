@@ -222,6 +222,13 @@ jobs:
             echo "no KEYSTORE_B64 secret; the debug key will sign"
           fi
 
+      - name: Number this build
+        run: |
+          code=$((100 + GITHUB_RUN_NUMBER))
+          echo "MW2_VERSION_CODE=$code" >> "$GITHUB_ENV"
+          echo "ORG_GRADLE_PROJECT_MW2_VERSION_CODE=$code" >> "$GITHUB_ENV"
+          echo "versionCode for this build: $code"
+
       - name: Build Campaign APK
         working-directory: android
         env:
@@ -287,7 +294,7 @@ jobs:
             "$tools/apksigner" verify --verbose "$got" || true
             exit 1
           fi
-          cp "$got" "dist/CoD-Modern-Warfare-2-RECOMP.apk"
+          cp "$got" "dist/CoD-Modern-Warfare-2-campaign.apk"
           (cd dist && sha256sum *.apk > SHA256SUMS.txt)
           ls -la dist
 
