@@ -117,6 +117,7 @@ fpsSlider.setOnSeekBarChangeListener(object : Simple() {
         })
 
         switch(R.id.stats, prefs.showStats) { prefs.showStats = it }
+        switch(R.id.fill_screen, prefs.fillScreen) { prefs.fillScreen = it }
 
         val textureLabel: TextView = findViewById(R.id.texture_label)
         val texture: SeekBar = findViewById(R.id.texture_budget)

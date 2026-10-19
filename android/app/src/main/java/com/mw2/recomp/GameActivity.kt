@@ -458,8 +458,8 @@ val mode60 = modes
                 // a weak phone can be given. setFixedSize comes back here
                 // with the new size, which is when the runtime is told.
                 val scale = prefs.resolutionScale
-                val wantedWidth = max(320, (surfaceView.width * scale).roundToInt())
                 val wantedHeight = max(240, (surfaceView.height * scale).roundToInt())
+                val wantedWidth = if (prefs.fillScreen) max(320, (wantedHeight * 16f / 9f).roundToInt()) else max(320, (surfaceView.width * scale).roundToInt())
                 if (width != wantedWidth || height != wantedHeight) {
                     holder.setFixedSize(wantedWidth, wantedHeight)
                     return

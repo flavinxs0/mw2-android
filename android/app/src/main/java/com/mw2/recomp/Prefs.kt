@@ -54,6 +54,14 @@ class Prefs(context: Context) {
         set(value) = store.edit().putBoolean(KEY_SHOW_STATS, value).apply()
 
     /**
+     * Stretch the picture to fill the whole screen (no black bars).
+     * The surface is made 16:9 and the display scales it up.
+     */
+    var fillScreen: Boolean
+        get() = store.getBoolean(KEY_FILL_SCREEN, false)
+        set(value) = store.edit().putBoolean(KEY_FILL_SCREEN, value).apply()
+
+    /**
      * Lock the display and presentation pipeline to 60 FPS.
      * The console's frame is a 60 Hz frame; locking to 60 avoids erratic
      * frame pacing, thermal throttling, and excessive battery drain.
@@ -226,6 +234,7 @@ class Prefs(context: Context) {
         private const val KEY_MSAA = "multisampling"
         private const val KEY_TEXTURE_MB = "textureBudgetMB"
         private const val KEY_SHOW_STATS = "showStats"
+        private const val KEY_FILL_SCREEN = "fillScreen"
         private const val KEY_60HZ = "prefer60Hz"
         private const val KEY_FOV = "fov"
         private const val KEY_AUDIO = "audio"
