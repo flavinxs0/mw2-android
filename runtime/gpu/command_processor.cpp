@@ -1031,6 +1031,15 @@ namespace
                 {
                     LOGW("pm4: packet at %08X (header %08X, type %u, payload %u words, remaining %u words, depth %d) invalid; seeking next valid packet",
                          packetAddr, header, type, payload, s.remaining, depth);
+                    {
+                        const uint32_t recheckA = *GuestPtr<be32>(packetAddr);
+                        std::atomic_thread_fence(std::memory_order_seq_cst);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(2));
+                        std::atomic_thread_fence(std::memory_order_seq_cst);
+                        const uint32_t recheckB = *GuestPtr<be32>(packetAddr);
+                        LOGW("pm4: recheck %08X after 2 ms: %08X -> %08X%s", packetAddr, recheckA, recheckB,
+                             recheckA != recheckB ? " (CHANGED: read too early)" : " (same: wrong pointer)");
+                    }
                     DumpPacketHistory(16);
                     DumpMemoryWindow(packetAddr);
                 }
