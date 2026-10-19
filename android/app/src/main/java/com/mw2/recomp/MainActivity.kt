@@ -472,8 +472,10 @@ class MainActivity : AppCompatActivity() {
     /** The PC launcher's black-bar highlight on the chosen entry. */
     private fun select(entry: Button) {
         selectedEntry?.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+        selectedEntry?.setTextColor(0xFFE8EAED.toInt())
         selectedEntry = entry
         entry.setBackgroundResource(R.drawable.bg_entry_selected)
+        entry.setTextColor(0xFF101828.toInt())
     }
 
     /** TU-aware asset match: TU0 never takes a TU6 APK and vice versa.

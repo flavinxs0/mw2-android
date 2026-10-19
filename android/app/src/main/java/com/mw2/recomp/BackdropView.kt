@@ -52,14 +52,14 @@ class BackdropView @JvmOverloads constructor(
         if (w <= 0f || h <= 0f) return
         val t = phase * Math.PI.toFloat() * 2f
 
-        canvas.drawColor(Color.rgb(0x14, 0x14, 0x17))
+        canvas.drawColor(Color.rgb(0x0B, 0x12, 0x20))
 
         // Grey smoke, top right, breathing slowly.
         paint.shader = RadialGradient(
             w * (0.86f + 0.03f * sin(t).toFloat()),
             h * (0.10f + 0.02f * sin((t * 1.3f).toFloat())),
             w.coerceAtLeast(h) * 0.75f,
-            Color.argb(70, 0x6E, 0x74, 0x7C),
+            Color.argb(60, 0x4A, 0x5A, 0x80),
             Color.TRANSPARENT,
             Shader.TileMode.CLAMP,
         )
@@ -70,7 +70,7 @@ class BackdropView @JvmOverloads constructor(
             w * (0.45f + 0.04f * sin((t * 0.7f + 2f).toFloat())),
             h * 0.28f,
             w.coerceAtLeast(h) * 0.55f,
-            Color.argb(46, 0x58, 0x5C, 0x64),
+            Color.argb(40, 0x2E, 0x3B, 0x5C),
             Color.TRANSPARENT,
             Shader.TileMode.CLAMP,
         )
@@ -81,7 +81,7 @@ class BackdropView @JvmOverloads constructor(
             w * (0.06f + 0.02f * sin((t * 0.5f + 4f).toFloat())),
             h * (0.98f - 0.02f * sin((t * 0.6f).toFloat())),
             w.coerceAtLeast(h) * 0.65f,
-            Color.argb(96, 0xB9, 0x8A, 0x2F),
+            Color.argb(70, 0xFF, 0x7A, 0x1A),
             Color.TRANSPARENT,
             Shader.TileMode.CLAMP,
         )

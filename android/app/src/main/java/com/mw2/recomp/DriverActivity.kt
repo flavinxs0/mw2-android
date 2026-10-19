@@ -160,7 +160,9 @@ class DriverActivity : AppCompatActivity() {
                         ""
                     }
                 } else ""
-                row.alpha = if (chosenDirectory.isEmpty()) 1f else 0.6f
+                val chosen = chosenDirectory.isEmpty()
+                row.alpha = if (chosen) 1f else 0.7f
+                row.setBackgroundResource(if (chosen) R.drawable.bg_card_selected else R.drawable.bg_card)
             } else {
                 val driver = drivers[position - 1]
                 title.text = driver.name
@@ -179,7 +181,9 @@ class DriverActivity : AppCompatActivity() {
                         append(driver.description)
                     }
                 }
-                row.alpha = if (chosenDirectory == driver.directory.absolutePath) 1f else 0.6f
+                val chosen = chosenDirectory == driver.directory.absolutePath
+                row.alpha = if (chosen) 1f else 0.7f
+                row.setBackgroundResource(if (chosen) R.drawable.bg_card_selected else R.drawable.bg_card)
             }
             return row
         }

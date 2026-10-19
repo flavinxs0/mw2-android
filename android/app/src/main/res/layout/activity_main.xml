@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#141417">
+    android:background="#0B1220">
 
     <com.mw2.recomp.BackdropView
         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:background="#3A3A3E" />
+                    android:background="#26324D" />
 
                 <Button android:id="@+id/driver" style="@style/MenuEntry"
                     android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
@@ -93,7 +93,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:background="#3A3A3E" />
+                    android:background="#26324D" />
 
                 <Button android:id="@+id/entry_updates" style="@style/MenuEntry"
                     android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"

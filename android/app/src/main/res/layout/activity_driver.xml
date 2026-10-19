@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0B0E12"
+    android:background="#0B1220"
     android:padding="20dp">
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="#141A21"
+        android:background="@drawable/bg_card"
         android:padding="12dp"
         android:textColor="#C8D0D8"
         android:textSize="13sp" />
@@ -32,6 +32,8 @@
 
     <Button
         android:id="@+id/import_driver"
+        android:background="@drawable/bg_button_action"
+        android:textColor="#E8EAED"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -43,6 +45,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="12dp"
-        android:divider="#1E262F"
-        android:dividerHeight="1dp" />
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp" />
 </LinearLayout>
