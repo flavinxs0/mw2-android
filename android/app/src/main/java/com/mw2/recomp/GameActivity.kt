@@ -738,8 +738,8 @@ val mode60 = modes
         // Settings; otherwise the tiered instant-boot budget + background warmup.
         NativeBridge.nativeSetOption("MW2_SHADER_PREWARM_ALL", if (prefs.prewarmAllShaders) "1" else "")
         NativeBridge.nativeSetOption("MW2_PERSIST_PIPELINE_CACHE", "1")
-        NativeBridge.nativeSetOption("MW2_TRACE_DRAWS", "300")
-        NativeBridge.nativeSetOption("MW2_TRACE_DRAWS_AFTER", "1500")
+        NativeBridge.nativeSetOption("MW2_TRACE_DRAWS", "600")
+        NativeBridge.nativeSetOption("MW2_TRACE_DRAWS_AFTER", "4500")
         NativeBridge.nativeSetOption(
             "MW2_TEXTURE_BUDGET_MB",
             if (prefs.textureBudgetMB > 0) prefs.textureBudgetMB.toString() else "",
