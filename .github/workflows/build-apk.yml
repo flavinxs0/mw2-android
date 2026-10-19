@@ -324,7 +324,7 @@ jobs:
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: android-sp-apk-${{ steps.tu.outputs.tu }}
+          name: CoD-Modern-Warfare-2-RECOMP
           path: dist/*
           retention-days: 30
           if-no-files-found: error

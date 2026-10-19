@@ -744,6 +744,7 @@ val mode60 = modes
             "MW2_TEXTURE_BUDGET_MB",
             "128",
         )
+        NativeBridge.nativeSetOption("MW2_ARENA_MB", "144")
         // Both caches live in the app's own folder and make the second start
         // of a level far quicker than the first.
         val extDir = getExternalFilesDir(null)
