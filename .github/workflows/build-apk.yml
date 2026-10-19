@@ -210,6 +210,18 @@ jobs:
         with:
           gradle-version: "8.11.1"
 
+      - name: Restore the signing key
+        env:
+          KEYSTORE_B64: ${{ secrets.KEYSTORE_B64 }}
+        run: |
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/mw2.keystore"
+            echo "MW2_KEYSTORE=$RUNNER_TEMP/mw2.keystore" >> "$GITHUB_ENV"
+            echo "signing with the fixed key"
+          else
+            echo "no KEYSTORE_B64 secret; the debug key will sign"
+          fi
+
       - name: Build Campaign APK
         working-directory: android
         env:
@@ -217,6 +229,8 @@ jobs:
           MW2_BUILD_SHA: ${{ github.sha }}
           MW2_NATIVE_OPTIMISATION: -O2
           MW2_COMPILER_LAUNCHER: ccache
+          MW2_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          MW2_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
           set -euo pipefail
           tu="${{ steps.tu.outputs.tu }}"

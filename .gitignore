@@ -104,3 +104,5 @@ iw4L/
 iw4L-cpp/build/
 /iw4L-cpp/build/
 build-iw4l*/
+*.keystore
+*.b64
