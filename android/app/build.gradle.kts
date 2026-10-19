@@ -127,7 +127,6 @@ android {
         create("campaign") {
             dimension = "title"
             applicationIdSuffix = ".sp"
-            versionNameSuffix = "-campaign"
             resValue("string", "app_name", "CoD: Modern Warfare 2")
             externalNativeBuild { cmake { arguments += listOf("-DMW2_TITLE=sp", "-DMW2_ONLINE=none") } }
         }
@@ -143,7 +142,6 @@ android {
         }
         create("tu0") {
             dimension = "tu"
-            versionNameSuffix = "-tu0"
             buildConfigField("String", "MW2_TU", "\"tu0\"")
             buildConfigField("String", "MW2_TU6_URL", "\"\"")
         }
