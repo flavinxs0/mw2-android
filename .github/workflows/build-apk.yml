@@ -1,6 +1,10 @@
 name: Build Android APK
 
 on:
+  # Build the isolated Mali-fix branch automatically so the APK is checked
+  # before anyone considers merging the changes.
+  push:
+    branches: [ fix/mali-runtime-stability ]
   release:
     types: [ published ]
   workflow_dispatch:
