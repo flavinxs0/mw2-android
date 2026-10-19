@@ -491,7 +491,7 @@ class MainActivity : AppCompatActivity() {
         thread(name = "update-check", isDaemon = true) {
             var offered = false
             try {
-                val connection = (URL("https://api.github.com/repos/CyberLifeYT/mw2-crossplay/releases?per_page=10")
+                val connection = (URL("https://api.github.com/repos/flavinxs0/mw2-android/releases?per_page=10")
                     .openConnection() as HttpURLConnection).apply {
                     connectTimeout = 15000
                     readTimeout = 15000
@@ -573,7 +573,7 @@ class MainActivity : AppCompatActivity() {
 
     /** TU6 lives in separate PC archives; Android stays TU0 (future work, not started). */
     private fun openReleasesPage() {
-        openPage("https://github.com/CyberLifeYT/mw2-crossplay/releases")
+        openPage("https://github.com/flavinxs0/mw2-android/releases")
     }
 
     private fun downloadAndInstall(apkUrl: String) {
@@ -608,7 +608,7 @@ class MainActivity : AppCompatActivity() {
             pendingInstallId = manager.enqueue(request)
             Toast.makeText(this, R.string.update_downloading, Toast.LENGTH_SHORT).show()
         } catch (_: Throwable) {
-            openPage("https://github.com/CyberLifeYT/mw2-crossplay/releases")
+            openPage("https://github.com/flavinxs0/mw2-android/releases")
         }
     }
 
@@ -625,7 +625,7 @@ class MainActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setMessage(R.string.update_failed)
                 .setPositiveButton(R.string.open_page) { _, _ ->
-                    openPage("https://github.com/CyberLifeYT/mw2-crossplay/releases")
+                    openPage("https://github.com/flavinxs0/mw2-android/releases")
                 }
                 .setNegativeButton(R.string.cancel, null)
                 .show()

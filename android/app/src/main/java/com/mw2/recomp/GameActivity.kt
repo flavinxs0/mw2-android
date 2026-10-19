@@ -739,7 +739,7 @@ val mode60 = modes
         NativeBridge.nativeSetOption("MW2_SHADER_PREWARM_ALL", if (prefs.prewarmAllShaders) "1" else "")
         NativeBridge.nativeSetOption("MW2_PERSIST_PIPELINE_CACHE", "1")
         NativeBridge.nativeSetOption("MW2_TRACE_DRAWS", "600")
-        NativeBridge.nativeSetOption("MW2_TRACE_DRAWS_AFTER", "4500")
+        NativeBridge.nativeSetOption("MW2_TRACE_DRAWS_AFTER", "2000")
         NativeBridge.nativeSetOption(
             "MW2_TEXTURE_BUDGET_MB",
             "128",
