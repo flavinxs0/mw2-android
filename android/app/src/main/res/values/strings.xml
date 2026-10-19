@@ -222,4 +222,6 @@
     <string name="reset_all_explained">Every control goes back where it started, at its original size.</string>
     <string name="persist_pipeline">Keep pipeline cache between runs (experimental)</string>
     <string name="fill_screen">Fill screen (stretch to the edges)</string>
+    <string name="state_on">On</string>
+    <string name="state_off">Off</string>
 </resources>

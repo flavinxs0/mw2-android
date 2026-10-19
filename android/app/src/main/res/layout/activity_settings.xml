@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#141417"
+    android:background="#0B1220"
     android:orientation="vertical">
 
     <LinearLayout
@@ -85,7 +85,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="4dp"
-        android:background="#3A3A3E" />
+        android:background="#26324D" />
 
     <View
         android:id="@+id/tab_rule"
@@ -128,6 +128,7 @@
 
                 <SeekBar
                     android:id="@+id/resolution"
+                    style="@style/SettingSeek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -145,6 +146,7 @@
 
                 <SeekBar
                     android:id="@+id/render_scale"
+                    style="@style/SettingSeek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -169,6 +171,7 @@
 
     <SeekBar
         android:id="@+id/fps_limit"
+        style="@style/SettingSeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
                 <TextView
@@ -179,6 +182,7 @@
 
                 <SeekBar
                     android:id="@+id/fov_slider"
+                    style="@style/SettingSeek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -210,6 +214,7 @@
 
                 <SeekBar
                     android:id="@+id/texture_budget"
+                    style="@style/SettingSeek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -309,6 +314,7 @@
 
                 <SeekBar
                     android:id="@+id/look_x"
+                    style="@style/SettingSeek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -320,6 +326,7 @@
 
                 <SeekBar
                     android:id="@+id/look_y"
+                    style="@style/SettingSeek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -331,6 +338,7 @@
 
                 <SeekBar
                     android:id="@+id/smoothing"
+                    style="@style/SettingSeek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -370,6 +378,8 @@
 
                 <EditText
                     android:id="@+id/player_name"
+                    android:background="@drawable/bg_field"
+                    android:padding="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/player_name"
@@ -406,6 +416,8 @@
 
                 <EditText
                     android:id="@+id/lan_iface"
+                    android:background="@drawable/bg_field"
+                    android:padding="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/lan_iface"
@@ -444,6 +456,8 @@
 
                 <Button
                     android:id="@+id/forget"
+                    android:background="@drawable/bg_button_action"
+                    android:textColor="#E8EAED"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -464,6 +478,8 @@
 
                 <Button
                     android:id="@+id/clear_shaders"
+                    android:background="@drawable/bg_button_action"
+                    android:textColor="#E8EAED"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -471,6 +487,8 @@
 
                 <Button
                     android:id="@+id/clear_logs"
+                    android:background="@drawable/bg_button_action"
+                    android:textColor="#E8EAED"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -478,6 +496,8 @@
 
                 <Button
                     android:id="@+id/install_mods"
+                    android:background="@drawable/bg_button_action"
+                    android:textColor="#E8EAED"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

@@ -47,6 +47,11 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         prefs = Prefs(this)
+        colorValues(
+            R.id.resolution_label, R.id.render_scale_label, R.id.fps_limit_label,
+            R.id.fov_label, R.id.texture_label, R.id.look_x_label,
+            R.id.look_y_label, R.id.smoothing_label,
+        )
         title = getString(R.string.settings)
 
         // ---- tab bar (plain views, no new deps): one page visible at a time ----
@@ -361,8 +366,45 @@ fpsSlider.setOnSeekBarChangeListener(object : Simple() {
 
     private fun switch(id: Int, initial: Boolean, onChange: (Boolean) -> Unit) {
         val view: SwitchCompat = findViewById(id)
+        val label = view.text.toString()
+        fun show(on: Boolean) {
+            val state = getString(if (on) R.string.state_on else R.string.state_off)
+            val text = android.text.SpannableString(label + "\n" + state)
+            val from = label.length + 1
+            text.setSpan(android.text.style.RelativeSizeSpan(0.8f), from, text.length, 0)
+            text.setSpan(
+                android.text.style.ForegroundColorSpan(if (on) 0xFFFF7A1A.toInt() else 0xFF7D8792.toInt()),
+                from, text.length, 0,
+            )
+            view.text = text
+        }
         view.isChecked = initial
-        view.setOnCheckedChangeListener { _, checked -> onChange(checked) }
+        show(initial)
+        view.setOnCheckedChangeListener { _, checked -> show(checked); onChange(checked) }
+    }
+
+    /** Paints the value after the last ": " of a label in the accent colour. */
+    private fun colorValues(vararg ids: Int) {
+        for (id in ids) {
+            val view: TextView = findViewById(id)
+            view.addTextChangedListener(object : android.text.TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) = Unit
+                override fun onTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) = Unit
+                override fun afterTextChanged(e: android.text.Editable?) {
+                    if (e == null) return
+                    e.getSpans(0, e.length, android.text.style.ForegroundColorSpan::class.java)
+                        .forEach { e.removeSpan(it) }
+                    val cut = e.toString().lastIndexOf(": ")
+                    if (cut >= 0) {
+                        e.setSpan(
+                            android.text.style.ForegroundColorSpan(0xFFFF7A1A.toInt()),
+                            cut + 2, e.length, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE,
+                        )
+                    }
+                }
+            })
+            view.text = view.text
+        }
     }
 
     /** A 0.2 to 4.0 slider with a label that follows it. */
