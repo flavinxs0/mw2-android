@@ -742,7 +742,7 @@ val mode60 = modes
         NativeBridge.nativeSetOption("MW2_TRACE_DRAWS_AFTER", "4500")
         NativeBridge.nativeSetOption(
             "MW2_TEXTURE_BUDGET_MB",
-            if (prefs.textureBudgetMB > 0) prefs.textureBudgetMB.toString() else "",
+            "320",
         )
         // Both caches live in the app's own folder and make the second start
         // of a level far quicker than the first.
