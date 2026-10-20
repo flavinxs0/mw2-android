@@ -1,0 +1,19 @@
+name: Vulkan stability toolkit compile check
+
+on:
+  push:
+    branches: [master, vulkan-stability-toolkit]
+  pull_request:
+    branches: [master]
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Vulkan headers
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ libvulkan-dev
+      - name: Compile helper header
+        run: g++ -std=c++17 -Wall -Wextra -Werror -fsyntax-only tests/vulkan_stability_compile.cpp
