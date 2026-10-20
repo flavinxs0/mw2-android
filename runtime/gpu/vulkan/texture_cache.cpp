@@ -1080,7 +1080,14 @@ bool vk::textures::Initialise()
         return false;
     }
 
-    LOGI("textures: uploading on %s", vk::pipeline::DeviceName());
+    // One startup snapshot for diagnosing texture corruption on drivers whose
+    // compressed-texture support differs from the renderer's expected path.
+    const bool bcHardware = vk::pipeline::TextureCompressionBC();
+    LOGI("textures: uploading on %s; BC hardware sampling=%s; "
+         "MW2_FORCE_BC_DECOMPRESS=%s; texture budget=%llu MiB; max 2D=%u",
+         vk::pipeline::DeviceName(), bcHardware ? "yes" : "no",
+         std::getenv("MW2_FORCE_BC_DECOMPRESS") ? "set" : "unset",
+         static_cast<unsigned long long>(g.budget >> 20), g.maxDimension);
     return true;
 }
 
