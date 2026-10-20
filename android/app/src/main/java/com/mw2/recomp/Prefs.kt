@@ -202,7 +202,7 @@ class Prefs(context: Context) {
      * (MW2_PERSIST_PIPELINE_CACHE). Off by default: it may be unstable.
      */
     var persistPipelineCache: Boolean
-        get() = store.getBoolean(KEY_PERSIST_PIPELINE, true)
+        get() = store.getBoolean(KEY_PERSIST_PIPELINE, false)
         set(value) = store.edit().putBoolean(KEY_PERSIST_PIPELINE, value).apply()
 
     /**

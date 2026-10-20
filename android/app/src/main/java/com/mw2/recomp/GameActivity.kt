@@ -737,13 +737,19 @@ val mode60 = modes
         // Full synchronous precompile at boot when the player asked for it in
         // Settings; otherwise the tiered instant-boot budget + background warmup.
         NativeBridge.nativeSetOption("MW2_SHADER_PREWARM_ALL", if (prefs.prewarmAllShaders) "1" else "")
-        NativeBridge.nativeSetOption("MW2_PERSIST_PIPELINE_CACHE", "1")
-        NativeBridge.nativeSetOption("MW2_TRACE_DRAWS", "600")
-        NativeBridge.nativeSetOption("MW2_TRACE_DRAWS_AFTER", "2000")
+        // Mali drivers have had trouble reloading persisted Vulkan pipeline blobs.
+        // Respect the user's setting; the safe default is off on this device class.
+        NativeBridge.nativeSetOption(
+            "MW2_PERSIST_PIPELINE_CACHE",
+            if (prefs.persistPipelineCache) "1" else "",
+        )
+        // Zero means let the runtime choose a budget for the actual device.
+        // Keep the small-phone default conservative, but make the UI setting real.
         NativeBridge.nativeSetOption(
             "MW2_TEXTURE_BUDGET_MB",
-            "128",
+            if (prefs.textureBudgetMB > 0) prefs.textureBudgetMB.toString() else "",
         )
+        // The 144 MB arena is a deliberate low-memory Android setting.
         NativeBridge.nativeSetOption("MW2_ARENA_MB", "144")
         // Both caches live in the app's own folder and make the second start
         // of a level far quicker than the first.
